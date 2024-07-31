@@ -78,4 +78,28 @@ public class PrincipalControlador {
         actualizarPosicionesArreglosObjetos();
     }
     
+    public void agregarElementoListaObjeto(){
+        String id = frame.getTxtListaID().getText();
+        String nombre = frame.getTxtListaNombre().getText();
+        String tipo = frame.getCmbListaTipo().getSelectedItem().toString();
+        String sNivelPoder = frame.getTxtListaNivelPoder().getText();
+        int nivelPoder = Integer.parseInt(sNivelPoder);
+        
+        negocio.agregarObjetoLista(id, nombre, tipo, nivelPoder);
+        
+        frame.getTxtListaID().setText("");
+        frame.getTxtListaNivelPoder().setText("");
+        frame.getTxtListaNombre().setText("");
+        
+        actualizarPosicionesListaObjetos();
+    }
+    
+    private void actualizarPosicionesListaObjetos(){
+        String textoPosiciones = negocio.obtenerPosicionesListaObjeto();
+        String textoValores = negocio.obtenerValoresListaObjeto();
+        
+        frame.getTxtPosicionesListaObjeto().setText(textoPosiciones);
+        frame.getTxtValoresListaObjeto().setText(textoValores);
+    }
+    
 }
