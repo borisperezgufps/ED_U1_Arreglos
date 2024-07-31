@@ -10,7 +10,8 @@ package u1.arreglos.modelo;
  */
 public class Negocio {
     
-    public String[] arreglo;
+    private String[] arreglo;
+    private SuperHeroe[] arregloObjeto;
     
     public void crearPosicionesArreglo(int tamanio){
         arreglo = new String[tamanio];
@@ -56,7 +57,56 @@ public class Negocio {
     }
 
     public void crearPosicionesArregloObjeto(int tamanio) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        arregloObjeto = new SuperHeroe[tamanio];
+    }
+    
+    public String obtenerPosicionesArregloObjeto(){
+        String texto = "";
+        for(int i=0;i<arregloObjeto.length;i++){
+            texto += "[ "+i+" ] - ";
+        }
+        
+        // Esto se hace para eliminar la rayita luego 
+        // de la ultima posicion.
+        texto = texto.substring(0, texto.length()-2);
+        
+        return texto;
+    }
+    
+    public String obtenerValoresArregloObjeto(){
+        String texto = "";
+        for(int i=0;i<arregloObjeto.length;i++){
+            SuperHeroe sh = arregloObjeto[i];
+            if(sh!=null){
+                String rutaMemoriaObjeto = sh.toString();
+                String objeto = rutaMemoriaObjeto.substring(rutaMemoriaObjeto.indexOf("@")+1);                
+                
+                texto += "[ "+objeto+" ] - "; // Se manda a imprimir la posicion de memoria
+            }else
+                texto += "[  ] - ";
+        }
+        texto = texto.substring(0, texto.length()-2);
+        
+        return texto;
+    }
+    
+    public void agregarObjeto(String id, String nombre, String tipo, int nivelPoder){
+        for (int i = 0; i < arregloObjeto.length; i++) {
+            if(arregloObjeto[i]==null){
+                
+                SuperHeroe sh = new SuperHeroe();
+                sh.setId(id);
+                sh.setNivelPoder(nivelPoder);
+                sh.setNombre(nombre);
+                sh.setTipo(tipo);
+                
+                arregloObjeto[i] = sh;
+                return;
+            }
+        }
+        
+        // Si no se encuentran posiciones vacias, no se agrega
+        // el elemento.
     }
     
 }

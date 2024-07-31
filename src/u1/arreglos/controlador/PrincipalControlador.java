@@ -55,11 +55,27 @@ public class PrincipalControlador {
     }
     
     private void actualizarPosicionesArreglosObjetos(){
-        String textoPosiciones = negocio.obtenerPosicionesArregloObjetos();
-        String textoValores = negocio.obtenerValoresArregloObjetos();
+        String textoPosiciones = negocio.obtenerPosicionesArregloObjeto();
+        String textoValores = negocio.obtenerValoresArregloObjeto();
         
         frame.getTxtPosicionesArregloObjeto().setText(textoPosiciones);
         frame.getTxtValoresArregloObjeto().setText(textoValores);
+    }
+    
+    public void agregarElementoArregloObjeto(){
+        String id = frame.getTxtValorArreglo().getText();
+        String nombre = frame.getTxtArregloNombre().getText();
+        String tipo = frame.getCmbArregloTipo().getSelectedItem().toString();
+        String sNivelPoder = frame.getTxtArregloNivelPoder().getText();
+        int nivelPoder = Integer.parseInt(sNivelPoder);
+        
+        negocio.agregarObjeto(id, nombre, tipo, nivelPoder);
+        
+        frame.getTxtArregloID().setText("");
+        frame.getTxtArregloNivelPoder().setText("");
+        frame.getTxtArregloNombre().setText("");
+        
+        actualizarPosicionesArreglosObjetos();
     }
     
 }
