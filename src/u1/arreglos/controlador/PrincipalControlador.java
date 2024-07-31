@@ -45,5 +45,21 @@ public class PrincipalControlador {
         frame.getTxtPosicionesArreglo().setText(textoPosiciones);
         frame.getTxtValoresArreglo().setText(textoValores);
     }
+
+    public void crearArregloObjeto() {
+        String sTamanio = frame.getTxtTamanioArregloObjeto().getText();
+        int tamanio = Integer.parseInt(sTamanio);
+        negocio.crearPosicionesArregloObjeto(tamanio);
+        
+        actualizarPosicionesArreglosObjetos();
+    }
+    
+    private void actualizarPosicionesArreglosObjetos(){
+        String textoPosiciones = negocio.obtenerPosicionesArregloObjetos();
+        String textoValores = negocio.obtenerValoresArregloObjetos();
+        
+        frame.getTxtPosicionesArregloObjeto().setText(textoPosiciones);
+        frame.getTxtValoresArregloObjeto().setText(textoValores);
+    }
     
 }
